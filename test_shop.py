@@ -65,10 +65,16 @@ class TestCart:
         cart.add_product(product, 1)
         assert cart.products[product] == 1
         cart.remove_product(product, 1)
-        assert cart.products[product] == 0
+        assert len(cart.products) == 0
         cart.add_product(product, 300)
         cart.remove_product(product)
         assert len(cart.products) == 0
+        cart.add_product(product, 10)
+        cart.remove_product(product, 15)
+        assert len(cart.products) == 0
+        cart.add_product(product, 10)
+        cart.remove_product(product, 4)
+        assert cart.products[product] == 6
 
     def test_clear(self, cart, product):
         cart.add_product(product, 10)
